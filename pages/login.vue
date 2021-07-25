@@ -8,7 +8,7 @@
             <label class="block">
               <span class="text-gray-700">Email address</span>
               <input
-                v-model="login.email"
+                v-model="login.identifier"
                 type="email"
                 class="field-item"
                 placeholder="john@example.com"
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       login: {
-        email: '',
+        identifier: '',
         password: '',
       },
       error: null,
@@ -52,10 +52,7 @@ export default {
       this.error = null
       try {
         await this.$auth.loginWith('local', {
-          data: {
-            identifier: this.login.email,
-            password: this.login.password,
-          },
+          data: this.login,
         })
 
         this.$router.push('/')
