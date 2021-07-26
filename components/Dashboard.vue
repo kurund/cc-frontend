@@ -51,106 +51,31 @@
                     </div>
                     <div class="mt-4 space-y-4">
                       <div class="flex flex-row">
-                        <div class="">
+                        <div v-for="type in callerTypes" :key="type.id">
                           <input
-                            id="callerType"
-                            name="push-notifications"
+                            :id="type.id"
+                            v-model="callerInfo.type"
+                            name="callerType"
                             type="radio"
-                            class="
-                              focus:ring-indigo-500
-                              h-4
-                              w-4
-                              text-indigo-600
-                              border-gray-300
-                            "
+                            :value="type.id"
+                            class="radio-field"
                           />
                           <label
-                            for="Farmer"
-                            class="ml-3 block text-sm font-medium text-gray-700"
+                            :for="type.id"
+                            class="ml-3 text-sm font-medium text-gray-700"
                           >
-                            Farmer
+                            {{ type.label }}
                           </label>
                         </div>
-                        <div class="">
+                        <div v-if="callerInfo.type === 'other'" class="ml-3">
                           <input
-                            id="callerType"
-                            name="push-notifications"
-                            type="radio"
-                            class="
-                              focus:ring-indigo-500
-                              h-4
-                              w-4
-                              text-indigo-600
-                              border-gray-300
-                            "
+                            id="callerTypeOther"
+                            v-model="callerInfo.typeOther"
+                            type="text"
+                            name="callerTypeOther"
+                            class="input-field"
                           />
-                          <label
-                            for="push-everything"
-                            class="ml-3 block text-sm font-medium text-gray-700"
-                          >
-                            Everything
-                          </label>
                         </div>
-                        <div class="">
-                          <input
-                            id="callerType"
-                            name="push-notifications"
-                            type="radio"
-                            class="
-                              focus:ring-indigo-500
-                              h-4
-                              w-4
-                              text-indigo-600
-                              border-gray-300
-                            "
-                          />
-                          <label
-                            for="push-everything"
-                            class="ml-3 block text-sm font-medium text-gray-700"
-                          >
-                            Everything
-                          </label>
-                        </div>
-                      </div>
-                      <div class="flex items-center">
-                        <input
-                          id="push-email"
-                          name="push-notifications"
-                          type="radio"
-                          class="
-                            focus:ring-indigo-500
-                            h-4
-                            w-4
-                            text-indigo-600
-                            border-gray-300
-                          "
-                        />
-                        <label
-                          for="push-email"
-                          class="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Same as email
-                        </label>
-                      </div>
-                      <div class="flex items-center">
-                        <input
-                          id="push-nothing"
-                          name="push-notifications"
-                          type="radio"
-                          class="
-                            focus:ring-indigo-500
-                            h-4
-                            w-4
-                            text-indigo-600
-                            border-gray-300
-                          "
-                        />
-                        <label
-                          for="push-nothing"
-                          class="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          No push notifications
-                        </label>
                       </div>
                     </div>
                   </fieldset>
@@ -163,20 +88,10 @@
                   >
                   <input
                     type="text"
-                    name="first-name"
+                    name="firstName"
                     id="first-name"
                     autocomplete="given-name"
-                    class="
-                      mt-1
-                      focus:ring-indigo-500
-                      focus:border-indigo-500
-                      block
-                      w-full
-                      shadow-sm
-                      sm:text-sm
-                      border-gray-300
-                      rounded-md
-                    "
+                    class="input-field"
                   />
                 </div>
 
@@ -191,42 +106,7 @@
                     name="last-name"
                     id="last-name"
                     autocomplete="family-name"
-                    class="
-                      mt-1
-                      focus:ring-indigo-500
-                      focus:border-indigo-500
-                      block
-                      w-full
-                      shadow-sm
-                      sm:text-sm
-                      border-gray-300
-                      rounded-md
-                    "
-                  />
-                </div>
-
-                <div class="col-span-6 sm:col-span-4">
-                  <label
-                    for="email-address"
-                    class="block text-sm font-medium text-gray-700"
-                    >Email address</label
-                  >
-                  <input
-                    type="text"
-                    name="email-address"
-                    id="email-address"
-                    autocomplete="email"
-                    class="
-                      mt-1
-                      focus:ring-indigo-500
-                      focus:border-indigo-500
-                      block
-                      w-full
-                      shadow-sm
-                      sm:text-sm
-                      border-gray-300
-                      rounded-md
-                    "
+                    class="input-field"
                   />
                 </div>
 
@@ -234,35 +114,79 @@
                   <label
                     for="country"
                     class="block text-sm font-medium text-gray-700"
-                    >Country / Region</label
+                    >State</label
                   >
                   <select
                     id="country"
                     name="country"
                     autocomplete="country"
-                    class="
-                      mt-1
-                      block
-                      w-full
-                      py-2
-                      px-3
-                      border border-gray-300
-                      bg-white
-                      rounded-md
-                      shadow-sm
-                      focus:outline-none
-                      focus:ring-indigo-500
-                      focus:border-indigo-500
-                      sm:text-sm
-                    "
+                    class="select-field"
                   >
+                    <option>-- please select --</option>
                     <option>United States</option>
                     <option>Canada</option>
                     <option>Mexico</option>
                   </select>
                 </div>
 
-                <div class="col-span-6">
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="country"
+                    class="block text-sm font-medium text-gray-700"
+                    >District</label
+                  >
+                  <select
+                    id="country"
+                    name="country"
+                    autocomplete="country"
+                    class="select-field"
+                  >
+                    <option>-- please select --</option>
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="country"
+                    class="block text-sm font-medium text-gray-700"
+                    >Taluka</label
+                  >
+                  <select
+                    id="country"
+                    name="country"
+                    autocomplete="country"
+                    class="select-field"
+                  >
+                    <option>-- please select --</option>
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="country"
+                    class="block text-sm font-medium text-gray-700"
+                    >Village</label
+                  >
+                  <select
+                    id="country"
+                    name="country"
+                    autocomplete="country"
+                    class="select-field"
+                  >
+                    <option>-- please select --</option>
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
+                </div>
+
+                <!-- <div class="col-span-6">
                   <label
                     for="street-address"
                     class="block text-sm font-medium text-gray-700"
@@ -285,9 +209,9 @@
                       rounded-md
                     "
                   />
-                </div>
+                </div> -->
 
-                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                <!-- <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                   <label
                     for="city"
                     class="block text-sm font-medium text-gray-700"
@@ -358,31 +282,11 @@
                       rounded-md
                     "
                   />
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button
-                type="submit"
-                class="
-                  inline-flex
-                  justify-center
-                  py-2
-                  px-4
-                  border border-transparent
-                  shadow-sm
-                  text-sm
-                  font-medium
-                  rounded-md
-                  text-white
-                  bg-indigo-600
-                  hover:bg-indigo-700
-                  focus:outline-none
-                  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-                "
-              >
-                Save
-              </button>
+              <button type="submit" class="purple-button">Save</button>
             </div>
           </div>
         </form>
@@ -392,12 +296,25 @@
 </template>
 
 <script>
+import callerTypes from '../data/constants'
+
 export default {
   data() {
     return {
+      callerTypes,
       callInfo: [],
       callerInfo: {
-        name: '',
+        type: '',
+        typeOther: '',
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        country: '',
+        state: '',
+        district: '',
+        taluka: '',
+        village: '',
       },
     }
   },

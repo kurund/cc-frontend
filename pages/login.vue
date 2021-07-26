@@ -10,8 +10,8 @@
               <input
                 v-model="login.identifier"
                 type="email"
-                class="field-item"
-                placeholder="john@example.com"
+                class="input-field"
+                placeholder="volunteer@example.com"
               />
             </label>
 
@@ -20,7 +20,7 @@
               <input
                 v-model="login.password"
                 type="password"
-                class="field-item"
+                class="input-field"
                 placeholder=""
               />
             </label>
