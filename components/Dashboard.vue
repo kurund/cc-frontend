@@ -145,9 +145,9 @@
                     class="select-field"
                   >
                     <option>-- please select --</option>
+                    <option>India</option>
                     <option>United States</option>
                     <option>Canada</option>
-                    <option>Mexico</option>
                   </select>
                 </div>
 
@@ -165,9 +165,8 @@
                     class="select-field"
                   >
                     <option>-- please select --</option>
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    <option>Tamil Nadu</option>
+                    <option>Karnataka</option>
                   </select>
                 </div>
 
@@ -185,9 +184,8 @@
                     class="select-field"
                   >
                     <option>-- please select --</option>
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    <option>District 1</option>
+                    <option>District 2</option>
                   </select>
                 </div>
 
@@ -205,9 +203,8 @@
                     class="select-field"
                   >
                     <option>-- please select --</option>
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    <option>Taluka 1</option>
+                    <option>Taluka 2</option>
                   </select>
                 </div>
 
@@ -225,13 +222,16 @@
                     class="select-field"
                   >
                     <option>-- please select --</option>
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    <option>Village 1</option>
+                    <option>Village 2</option>
+                    <option>Other</option>
                   </select>
                 </div>
 
-                <div class="col-span-6 sm:col-span-3">
+                <div
+                  v-if="callerInfo.village === 'Other'"
+                  class="col-span-6 sm:col-span-3"
+                >
                   <label
                     for="villageOther"
                     class="block text-sm font-medium text-gray-700"
