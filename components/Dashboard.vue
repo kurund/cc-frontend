@@ -81,6 +81,24 @@
                   </fieldset>
                 </div>
 
+                <div class="col-span-6">
+                  <label
+                    for="phoneNumber"
+                    class="block text-sm font-medium text-gray-700"
+                    >Phone Number</label
+                  >
+                  <input
+                    id="phoneNumber"
+                    v-model="callerInfo.phone"
+                    type="text"
+                    name="phoneNumber"
+                    autocomplete="phone"
+                    class="input-field"
+                    :disabled="callInfo.callerNumber"
+                    required
+                  />
+                </div>
+
                 <div class="col-span-6 sm:col-span-3">
                   <label
                     for="firstName"
@@ -346,7 +364,7 @@ export default {
       callerTypes,
       callInfo: [],
       callerInfo: {
-        type: '',
+        type: 'farmer',
         typeOther: '',
         firstName: '',
         lastName: '',
@@ -367,6 +385,7 @@ export default {
         callerNumber: '9989889887',
         optionSelected: '1',
       }
+      this.callerInfo.phone = this.callInfo.callerNumber
       return this.callInfo
     },
     callDone() {
