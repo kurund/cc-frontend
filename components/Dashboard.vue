@@ -14,7 +14,7 @@
             </button>
           </div>
         </div>
-        <div class="mt-4" v-if="callInfo.callerNumber">
+        <div v-if="callInfo.callerNumber" class="mt-4">
           <div class="mb-4">
             <div class="leading-5 font-semibold mb-4">
               <span class="font-semibold"> Caller Number: </span>
@@ -38,11 +38,11 @@
     </div>
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 mt-8">
       <div class="mt-5 md:mt-0 md:col-span-2">
-        <form action="#" method="POST">
+        <form action="#" method="POST" @submit.prevent="saveCallerInfo">
           <div class="shadow overflow-hidden sm:rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
               <div class="grid grid-cols-6 gap-6">
-                <div class="col-span-6 sm:col-span-6">
+                <div class="col-span-6">
                   <fieldset>
                     <div>
                       <legend class="text-base font-medium text-gray-900">
@@ -80,16 +80,18 @@
                     </div>
                   </fieldset>
                 </div>
+
                 <div class="col-span-6 sm:col-span-3">
                   <label
-                    for="first-name"
+                    for="firstName"
                     class="block text-sm font-medium text-gray-700"
                     >First name</label
                   >
                   <input
+                    id="firstName"
+                    v-model="callerInfo.firstName"
                     type="text"
                     name="firstName"
-                    id="first-name"
                     autocomplete="given-name"
                     class="input-field"
                   />
@@ -97,14 +99,15 @@
 
                 <div class="col-span-6 sm:col-span-3">
                   <label
-                    for="last-name"
+                    for="lastName"
                     class="block text-sm font-medium text-gray-700"
                     >Last name</label
                   >
                   <input
+                    id="lastName"
+                    v-model="callerInfo.lastName"
                     type="text"
-                    name="last-name"
-                    id="last-name"
+                    name="lastName"
                     autocomplete="family-name"
                     class="input-field"
                   />
@@ -114,10 +117,11 @@
                   <label
                     for="country"
                     class="block text-sm font-medium text-gray-700"
-                    >State</label
+                    >Country</label
                   >
                   <select
                     id="country"
+                    v-model="callerInfo.country"
                     name="country"
                     autocomplete="country"
                     class="select-field"
@@ -131,14 +135,35 @@
 
                 <div class="col-span-6 sm:col-span-3">
                   <label
-                    for="country"
+                    for="state"
+                    class="block text-sm font-medium text-gray-700"
+                    >State</label
+                  >
+                  <select
+                    id="state"
+                    v-model="callerInfo.state"
+                    name="state"
+                    autocomplete="state"
+                    class="select-field"
+                  >
+                    <option>-- please select --</option>
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="district"
                     class="block text-sm font-medium text-gray-700"
                     >District</label
                   >
                   <select
-                    id="country"
-                    name="country"
-                    autocomplete="country"
+                    id="district"
+                    v-model="callerInfo.district"
+                    name="district"
+                    autocomplete="district"
                     class="select-field"
                   >
                     <option>-- please select --</option>
@@ -150,14 +175,15 @@
 
                 <div class="col-span-6 sm:col-span-3">
                   <label
-                    for="country"
+                    for="taluka"
                     class="block text-sm font-medium text-gray-700"
                     >Taluka</label
                   >
                   <select
-                    id="country"
-                    name="country"
-                    autocomplete="country"
+                    id="taluka"
+                    v-model="callerInfo.taluka"
+                    name="taluka"
+                    autocomplete="taluka"
                     class="select-field"
                   >
                     <option>-- please select --</option>
@@ -169,14 +195,15 @@
 
                 <div class="col-span-6 sm:col-span-3">
                   <label
-                    for="country"
+                    for="village"
                     class="block text-sm font-medium text-gray-700"
                     >Village</label
                   >
                   <select
-                    id="country"
-                    name="country"
-                    autocomplete="country"
+                    id="village"
+                    v-model="callerInfo.village"
+                    name="village"
+                    autocomplete="village"
                     class="select-field"
                   >
                     <option>-- please select --</option>
@@ -184,6 +211,21 @@
                     <option>Canada</option>
                     <option>Mexico</option>
                   </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="villageOther"
+                    class="block text-sm font-medium text-gray-700"
+                    >Village Name</label
+                  >
+                  <input
+                    id="otherVillage"
+                    v-model="callerInfo.otherVillage"
+                    type="text"
+                    name="otherVillage"
+                    class="input-field"
+                  />
                 </div>
 
                 <!-- <div class="col-span-6">
@@ -315,6 +357,7 @@ export default {
         district: '',
         taluka: '',
         village: '',
+        otherVillage: '',
       },
     }
   },
@@ -328,6 +371,9 @@ export default {
     },
     callDone() {
       this.callInfo = []
+    },
+    saveCallerInfo() {
+      console.log(this.callerInfo)
     },
   },
 }
