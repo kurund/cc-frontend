@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1>Welcome</h1>
+  <div>
+    <h1>Contacts</h1>
   </div>
 </template>
 
@@ -8,4 +8,4 @@
 export default {}
 </script>
 
-<style scoped></style>
+<style></style>
