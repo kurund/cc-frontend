@@ -22,15 +22,17 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   methods: {
     async logout() {
       await this.$auth.logout()
       this.$router.push('/login')
     },
   },
-}
+})
 </script>
 
 <style></style>

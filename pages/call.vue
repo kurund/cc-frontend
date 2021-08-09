@@ -355,10 +355,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import callerTypes from '../data/constants'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   data() {
     return {
       callerTypes,
@@ -395,7 +396,7 @@ export default {
       console.log(this.callerInfo)
     },
   },
-}
+})
 </script>
 
 <style scoped></style>
